@@ -3,7 +3,7 @@
     setInterval(function () {
         for (var i = 0; i < ichatUserIds.length; i++) {
             var $reqUserid = ichatUserIds[i];
-            $.ajaxSetup({async: false});
+            $.ajaxSetup({async: false});  //  Required to run the code Synchronously
             $.get("/checklivestatus/" + $reqUserid, function (status) {
                 if (status == 'yes') {
                     $(".onLineUser_" + $reqUserid).removeClass('hide')
