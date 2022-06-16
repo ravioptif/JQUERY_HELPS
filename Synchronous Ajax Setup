@@ -1,0 +1,18 @@
+    //===============Show Online OffLine Status===============================//
+    var ichatUserIds = <?php echo json_encode($ichatUserIds); ?>;
+    setInterval(function () {
+        for (var i = 0; i < ichatUserIds.length; i++) {
+            var $reqUserid = ichatUserIds[i];
+            $.ajaxSetup({async: false});
+            $.get("/checklivestatus/" + $reqUserid, function (status) {
+                if (status == 'yes') {
+                    $(".onLineUser_" + $reqUserid).removeClass('hide')
+                    $(".offLineUser_" + $reqUserid).addClass('hide')
+                } else {
+                    $(".onLineUser_" + $reqUserid).addClass('hide')
+                    $(".offLineUser_" + $reqUserid).removeClass('hide')
+                }
+            });
+        }
+    }, 14000);
+    //===============End Show Online OffLine Status============================//
